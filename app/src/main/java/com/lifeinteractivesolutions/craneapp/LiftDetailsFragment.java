@@ -31,6 +31,7 @@ public class LiftDetailsFragment extends Fragment {
 
     public static String tag = "com.lifeinteractivesolutions.craneapp.LiftDetailsFragment";
     public static final int request_code = 1;
+    public int loaded = 0;
 
     private HashMap<String,Double> liftMeasurements;
 
@@ -281,14 +282,16 @@ public class LiftDetailsFragment extends Fragment {
                     if(i == 2)
                     {
                         if(checkBox.isChecked() == true) {
-                            OtherDialog otherDialog = OtherDialog.newInstance();
-                            otherDialog.setTargetFragment(LiftDetailsFragment.this, LiftDetailsFragment.request_code);
-                            otherDialog.show(getFragmentManager(), LiftDetailsFragment.tag);
+                            if(loaded != 0) {
+                                OtherDialog otherDialog = OtherDialog.newInstance(0,getActivity().getApplicationContext(),-1);
+                                otherDialog.setTargetFragment(LiftDetailsFragment.this, LiftDetailsFragment.request_code);
+                                otherDialog.show(getFragmentManager(), LiftDetailsFragment.tag);
+                            }
 
                         }
                         else
                         {
-                            lift.getCommunication().
+                            lift.getCommunication().setOther(false,null);
 
                         }
 
@@ -297,28 +300,29 @@ public class LiftDetailsFragment extends Fragment {
                     {
 
                         if(checkBox.isChecked() == true) {
-                          lift.setCommunication(1,true,null);
+                          lift.getCommunication().setHands(true);
 
                         }
                         else
                         {
-                            lift.setCommunication(1,false,null);
+                            lift.getCommunication().setHands(false);
                         }
                     }
                     else
                     {
                         if(checkBox.isChecked())
                         {
-                            lift.setCommunication(0,true,null);
+                            lift.getCommunication().setRadio(true);
                         }
                         else
                         {
-                            lift.setCommunication(0,false,null);
+                            lift.getCommunication().setRadio(false);
                         }
                     }
                 }
             });
-            if(lift.getCommunication()[i] != null && (! lift.getCommunication()[i].equalsIgnoreCase("")))
+
+            if(lift.getCommunication().getValueofCommunication(i) != false)
             {
                 checkBox.setChecked(true);
             }
@@ -331,7 +335,7 @@ public class LiftDetailsFragment extends Fragment {
         layout.addView(radioGroup);
        scrollView.addView(layout);
       //  v.addView(layout);
-
+        loaded = 1;
         return scrollView;
     }
 
@@ -383,7 +387,7 @@ public class LiftDetailsFragment extends Fragment {
        if(requestCode == LiftDetailsFragment.request_code && resultCode == Activity.RESULT_OK)
        {
            String otherAnswer = data.getStringExtra(OtherDialog.answerKey);
-           lift.setCommunication(2,true,otherAnswer);
+           lift.getCommunication().setOther(true,otherAnswer);
        }
     }
 }
