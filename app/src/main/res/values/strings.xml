@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CraneApp</string>
+    <string name="add_new_crane_item">Add new Crane Item</string>
+    <string name= "confirm_crane_name">Add</string>
+    <string name ="cancel_crane_creation">Cancel</string>
+    <string name ="crane_dialog_text">Enter crane name</string>
+    <string name = "crane_dialog_error">Length of crane name is less than 1</string>
+    <string name = "cancel_date">Cancel</string>
+    <string name = "confirm_date">Confirm</string>
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="200dp">
+<!--<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="60dp"
+    android:layout_gravity="center_horizontal|center_vertical"
+
+    android:textSize = "18dp"
+    android:id = "@+id/explanation"/> -->
+
+    <EditText
+        android:layout_width = "match_parent"
+        android:layout_marginTop="40dp"
+        android:layout_height = "40dp"
+        android:hint = "@string/crane_dialog_text"
+        android:background="@drawable/text_background2"
+
+        android:textSize="20dp"
+        android:maxLines="4"
+        android:id = "@+id/editText"
+        />
+
+
+</LinearLayout>
